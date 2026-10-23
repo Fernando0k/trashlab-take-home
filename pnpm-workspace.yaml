@@ -1,0 +1,39 @@
+# Direct dependency versions are centralized here; package.json uses `catalog:`.
+packages:
+  - '.'
+
+catalog:
+  '@nestjs/cli': ~12.0.8
+  '@nestjs/common': ~12.1.2
+  '@nestjs/config': ~12.0.1
+  '@nestjs/core': ~12.1.2
+  '@nestjs/platform-express': ~12.1.2
+  '@nestjs/schedule': ~12.0.2
+  '@nestjs/schematics': ~12.0.6
+  '@nestjs/swagger': ~12.0.2
+  '@nestjs/testing': ~12.1.2
+  '@nestjs/typeorm': ~12.0.2
+  '@types/express': ~5.0.6
+  '@types/node': ~26.6.5
+  class-transformer: ~0.5.1
+  class-validator: ~0.15.1
+  concurrently: ~10.0.6
+  pg: ~8.23.1
+  prettier: ~3.9.9
+  oxlint: ~1.87.0
+  reflect-metadata: ~0.2.2
+  rxjs: ~7.8.2
+  typeorm: ~1.1.2
+  typescript: ~7.0.2
+  undici: ~8.11.2
+  vitest: ~5.0.3
+
+# Do not resolve a package version until it has been public for seven days.
+# Security fixes can be deliberately exempted with minimumReleaseAgeExclude.
+minimumReleaseAge: 10080
+minimumReleaseAgeStrict: true
+blockExoticSubdeps: true
+trustPolicy: no-downgrade
+frozenLockfile: true
+allowBuilds:
+  '@scarf/scarf': false

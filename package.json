@@ -1,0 +1,52 @@
+{
+  "name": "qbo-invoice-sync",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@12.14.0",
+  "description": "Two-way internal invoice and QuickBooks Online sync",
+  "engines": {
+    "node": ">=24.22.0"
+  },
+  "scripts": {
+    "build": "rm -rf dist tsconfig.tsbuildinfo && tsc -p tsconfig.json",
+    "start:dev": "pnpm run build && concurrently --kill-others --names tsc,node \"pnpm run watch:tsc\" \"pnpm run watch:node\"",
+    "watch:tsc": "tsc -p tsconfig.json --watch --preserveWatchOutput",
+    "watch:node": "node --watch-path=dist dist/main.js",
+    "start": "node dist/main.js",
+    "stress:create": "node --env-file=.env dist/scripts/stress-create-invoices.js",
+    "stress:update": "node --env-file=.env dist/scripts/stress-update-invoices.js",
+    "test": "pnpm run build && vitest run --globals",
+    "lint": "oxlint src test --deny-warnings",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "migration:run": "pnpm run build && node --env-file=.env ./node_modules/typeorm/cli.js migration:run -d dist/database/data-source.js"
+  },
+  "dependencies": {
+    "@nestjs/common": "catalog:",
+    "@nestjs/config": "catalog:",
+    "@nestjs/core": "catalog:",
+    "@nestjs/platform-express": "catalog:",
+    "@nestjs/schedule": "catalog:",
+    "@nestjs/swagger": "catalog:",
+    "@nestjs/typeorm": "catalog:",
+    "class-transformer": "catalog:",
+    "class-validator": "catalog:",
+    "pg": "catalog:",
+    "reflect-metadata": "catalog:",
+    "rxjs": "catalog:",
+    "typeorm": "catalog:",
+    "undici": "catalog:"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "catalog:",
+    "@nestjs/schematics": "catalog:",
+    "@nestjs/testing": "catalog:",
+    "@types/express": "catalog:",
+    "@types/node": "catalog:",
+    "concurrently": "catalog:",
+    "oxlint": "catalog:",
+    "prettier": "catalog:",
+    "vitest": "catalog:",
+    "typescript": "catalog:"
+  }
+}
